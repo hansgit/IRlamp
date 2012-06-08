@@ -1,8 +1,12 @@
+// Checks for signal on IR sensor on pin irPin and adjusts LED brightness
+// based on detected lightning conditions
+
 #include <IRremote.h>
 #define MAX_TIME 150
 
-const int ledPin = 6;
-const int lightPin  = 0;
+const int ledPin = 6;     // LED bank/transistor pin
+const int lightPin  = 0;  // Light PR pin
+const int irPin = 2;      // IR sensor pin
 int   luminosite;
 long lastPressTime = 0;
 boolean state = 0;
@@ -13,7 +17,7 @@ int samplingIndex = 0;
 int samplingTotal = 0;
 int samplingAvg = 0;
 
-IRrecv irrecv(2); // annonce le pin du recepteur IR
+IRrecv irrecv(irPin); // annonce le pin du recepteur IR
 decode_results results;
 
 void setup() {
